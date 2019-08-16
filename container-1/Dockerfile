@@ -1,3 +1,3 @@
 FROM alpine:latest
 
-CMD "echo TEST"
+CMD "echo from container-1"
