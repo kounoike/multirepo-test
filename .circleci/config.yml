@@ -5,30 +5,23 @@ orbs:
   aws-ecr: circleci/aws-ecr@6.2.0
 
 jobs:
-  check-and-build-only:
-    executor: docker/machine
+  - build-container-1:
     steps:
       - checkout
       - docker/check
       - docker/build:
           image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          path: container-1
+  - build-container-2:
+    steps:
+      - checkout
+      - docker/check
+      - docker/build:
+          image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+          path: container-2
 
 workflows:
   build-container-1:
-    jobs:
-      - build-container-1:
-        steps:
-          - checkout
-          - docker/check
-          - docker/build:
-              image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-              path: container-1
+    - build-container-1
   build-container-2:
-    jobs:
-      - build-container-1:
-        steps:
-          - checkout
-          - docker/check
-          - docker/build:
-              image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
-              path: container-2
+    - build-container-2
