@@ -10,7 +10,6 @@ workflows:
         path: container-1
         deploy: false
         image: $CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}-container-1
-  build-container-2:
     - docker/publish:
         deploy: false
         path: container-2
