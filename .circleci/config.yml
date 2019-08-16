@@ -16,9 +16,19 @@ jobs:
 workflows:
   build-container-1:
     jobs:
-      - check-and-build-only:
-        path: container-1
+      - build-container-1:
+      steps:
+        - checkout
+        - docker/check
+        - docker/build:
+            image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+            path: container-1
   build-container-2:
     jobs:
-      - check-and-build-only:
-        path: container-2
+      - build-container-1:
+      steps:
+        - checkout
+        - docker/check
+        - docker/build:
+            image: $CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
+            path: container-2
