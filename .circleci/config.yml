@@ -1,9 +1,18 @@
 version: 2.1
 
 orbs:
-    hello: circleci/hello-build@0.0.7 # circleci/buildpack-deps Docker イメージを使います
+  aws-ecr: circleci/aws-ecr@6.2.0
 
 workflows:
-    "Hello Workflow":
-        jobs:
-          - hello/hello-build
+  build-container-1:
+    jobs:
+      - aws-ecr/build-image:
+          create-repo: true
+          path: container-1
+          repo: myECRRepository-1
+  build-container-2:
+    jobs:
+      - aws-ecr/build-image:
+          create-repo: true
+          path: container-2
+          repo: myECRRepository-2
