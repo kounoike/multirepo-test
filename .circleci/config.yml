@@ -7,11 +7,11 @@ orbs:
 workflows:
   build-container-1:
     - docker/publish:
-      path: container-1
-      deploy: false
-      image: $CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}-container-1
+        path: container-1
+        deploy: false
+        image: $CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}-container-1
   build-container-2:
     - docker/publish:
-      deploy: false
-      path: container-2
-      image: $CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}-container-2
+        deploy: false
+        path: container-2
+        image: $CIRCLE_PROJECT_USERNAME/${CIRCLE_PROJECT_REPONAME}-container-2
